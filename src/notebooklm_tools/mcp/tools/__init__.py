@@ -45,6 +45,22 @@ from .exports import (
 )
 from .notes import note
 from .server import server_info
+from .batch import (
+    batch_query,
+    batch_source_add,
+    batch_studio_create,
+    batch_notebook_list,
+    batch_notebook_delete,
+)
+from .cross_notebook import cross_notebook_query
+from .pipeline import pipeline_run, pipeline_list
+from .smart_select import (
+    smart_select_tag_add,
+    smart_select_tag_remove,
+    smart_select_tag_list,
+    smart_select_query,
+)
+from .studio_advanced import studio_create_advanced
 
 __all__ = [
     # Downloads (1 consolidated)
@@ -89,4 +105,22 @@ __all__ = [
     "note",
     # Server (1)
     "server_info",
+    # Batch (5)
+    "batch_query",
+    "batch_source_add",
+    "batch_studio_create",
+    "batch_notebook_list",
+    "batch_notebook_delete",
+    # Cross-notebook (1)
+    "cross_notebook_query",
+    # Pipeline (2)
+    "pipeline_run",
+    "pipeline_list",
+    # Smart select (4)
+    "smart_select_tag_add",
+    "smart_select_tag_remove",
+    "smart_select_tag_list",
+    "smart_select_query",
+    # Studio advanced (1)
+    "studio_create_advanced",
 ]
