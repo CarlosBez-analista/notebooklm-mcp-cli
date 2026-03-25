@@ -197,7 +197,7 @@ class TestNotebookLMClientAuth:
 
     def test_add_drive_source_uses_extended_timeout(self, mock_client):
         """Test that add_drive_source uses extended timeout (120s) for large files."""
-        from notebooklm_tools.core.client import SOURCE_ADD_TIMEOUT
+        from notebooklm_tools.core.base import SOURCE_ADD_TIMEOUT
 
         with (
             patch.object(mock_client, "_get_client") as mock_get_client,
@@ -222,7 +222,7 @@ class TestNotebookLMClientAuth:
 
     def test_add_drive_source_timeout_returns_status(self, mock_client):
         """Test that add_drive_source returns timeout status on timeout exception."""
-        from notebooklm_tools.core.client import SOURCE_ADD_TIMEOUT
+        from notebooklm_tools.core.base import SOURCE_ADD_TIMEOUT
 
         with patch.object(mock_client, "_get_client") as mock_get_client:
             http_client = MagicMock(spec=httpx.Client)

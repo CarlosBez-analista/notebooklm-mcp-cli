@@ -12,7 +12,8 @@ from pathlib import Path
 
 import pytest
 
-from notebooklm_tools.core.client import ArtifactNotReadyError, NotebookLMClient
+from notebooklm_tools.core.client import NotebookLMClient
+from notebooklm_tools.core.errors import ArtifactNotReadyError
 
 # Target notebook ID provided by user
 NOTEBOOK_ID = "4085e211-fdb0-4802-b973-b43b9f99b6f7"

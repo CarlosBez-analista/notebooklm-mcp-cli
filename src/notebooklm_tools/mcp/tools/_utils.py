@@ -8,7 +8,8 @@ import os
 import threading
 
 from notebooklm_tools.core.auth import load_cached_tokens
-from notebooklm_tools.core.client import NotebookLMClient, extract_cookies_from_chrome_export
+from notebooklm_tools.core.client import NotebookLMClient
+from notebooklm_tools.core.utils import extract_cookies_from_chrome_export
 
 # MCP request/response logger
 mcp_logger = logging.getLogger("notebooklm_tools.mcp")
