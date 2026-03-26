@@ -4,7 +4,7 @@ from typing import Any
 
 from ...services import ServiceError
 from ...services import chat as chat_service
-from ._utils import get_client, get_query_timeout, logged_tool
+from ._utils import coerce_list, get_client, get_query_timeout, logged_tool
 
 
 @logged_tool()
@@ -28,6 +28,8 @@ def notebook_query(
     """
     try:
         client = get_client()
+        # Coerce list params from MCP clients (may arrive as strings)
+        source_ids = coerce_list(source_ids)
         effective_timeout = timeout or get_query_timeout()
         result = chat_service.query(
             client,

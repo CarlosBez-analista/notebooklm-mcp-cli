@@ -1067,7 +1067,9 @@ class DownloadMixin(BaseClient):
             questions = app_data.get("quiz", [])
             if output_format == "markdown":
                 return self._format_quiz_markdown(title, questions)
-            return json.dumps({"title": title, "questions": questions}, indent=2, ensure_ascii=False)
+            return json.dumps(
+                {"title": title, "questions": questions}, indent=2, ensure_ascii=False
+            )
 
         # Flashcards
         cards = app_data.get("flashcards", [])

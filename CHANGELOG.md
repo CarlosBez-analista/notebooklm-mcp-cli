@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.10] - 2026-03-27
+
+### Fixed
+- **Quiz/Flashcard `focus_prompt` ignored (Issue #113)** — The `focus_prompt` parameter for quiz and flashcard generation was silently ignored due to an off-by-one error in the RPC payload structure. The backend expects `focus_prompt` at array index `[2]` (after a reserved `null` slot), but it was being placed at index `[1]`. Both `create_quiz` and `create_flashcards` in `core/studio.py` now use the correct payload layout. Thanks to **@ojsed** for the detailed analysis!
+- **`source_ids` parameter fails with string input (Issue #111)** — MCP clients (Claude Desktop, Cursor, etc.) frequently serialize list parameters as JSON strings (`'["a","b"]'`) or comma-separated strings (`'a,b'`) instead of native Python lists, causing Pydantic validation errors. Added a `coerce_list()` helper in `mcp/tools/_utils.py` that normalizes all input forms (JSON strings, comma-separated, single values, native lists) into proper `list[T]`. Applied to all 6 list parameters across 4 MCP tool files: `studio_create`, `notebook_query`, `source_add`, `source_sync_drive`, `source_delete`, and `research_import`. Thanks to **@Carlos-OL** for reporting!
+- **Non-ASCII characters in JSON output (PR #112)** — Fixed `ensure_ascii=False` missing from `json.dumps()` calls across core and CLI layers, causing Unicode characters to be escaped as `\uXXXX` in RPC request bodies and file persistence. Thanks to **@rujinlong** for the fix!
+
+### Added
+- **13 new unit tests** for `coerce_list` helper (total: 660 tests)
+
 ## [0.5.9] - 2026-03-25
 ### Fixed
 - Fixed a fatal `ImportError` in the CLI (`ArtifactNotReadyError`) caused by missed codebase updates during the v0.5.8 structural refactor.

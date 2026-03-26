@@ -881,7 +881,6 @@ def extract_cookies_from_page(
     wait_for_login: bool = True,
     login_timeout: int = 300,
 ) -> dict[str, Any]:
-
     page = find_or_create_notebooklm_page_by_cdp_url(cdp_http_url)
     if not page:
         raise AuthenticationError(

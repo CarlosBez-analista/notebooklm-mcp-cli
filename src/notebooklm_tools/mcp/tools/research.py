@@ -4,7 +4,7 @@ from typing import Any
 
 from ...services import ServiceError
 from ...services import research as research_service
-from ._utils import get_client, logged_tool
+from ._utils import coerce_list, get_client, logged_tool
 
 
 @logged_tool()
@@ -105,6 +105,8 @@ def research_import(
     """
     try:
         client = get_client()
+        # Coerce list params from MCP clients (may arrive as strings)
+        source_indices = coerce_list(source_indices, item_type=int)
         result = research_service.import_research(
             client,
             notebook_id,

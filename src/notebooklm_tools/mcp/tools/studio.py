@@ -5,7 +5,7 @@ from typing import Any
 from ...services import ServiceError, ValidationError
 from ...services import studio as studio_service
 from ...utils.config import get_default_language
-from ._utils import get_client, logged_tool
+from ._utils import coerce_list, get_client, logged_tool
 
 
 @logged_tool()
@@ -80,6 +80,9 @@ def studio_create(
     """
     if not language:
         language = get_default_language()
+
+    # Coerce list params from MCP clients (may arrive as strings)
+    source_ids = coerce_list(source_ids)
 
     # Validate type early (before confirmation check)
     try:
