@@ -73,10 +73,9 @@ run*.notebooklm-py-analysis/
 test_pr_61.py
 notebooklm-mcp-*.mcpb
 
-# Agent scratch data (keep .agent/workflows/ and .agents/rules/)
-.agent/*.json
-.agent/*.diff
-.agent/*.patch
+# Agent config (local, not project source)
+.agent/
+.agents/
 
 # Claude / AI assistant settings
 .claude_settings.json
